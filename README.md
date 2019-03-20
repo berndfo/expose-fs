@@ -1,29 +1,22 @@
-# expose-fs
+# expose-fs as a container
 
 Expose a file system over http
 
-```
-npm install -g expose-fs
-```
+## Build
+docker build . -t brainlounge/exposefs
 
 ## Usage
 
-This install a command line tool called `expose-fs`
-
-```
-expose-fs . # expose . on port 8441
-```
+docker run -v /<localpath>:/mnt -p 8080:8441 brainlounge/exposefs
 
 Then do
 
 ```
-curl localhost:8441 # returns a directory listing in JSON format
-curl localhost:8441/some-file.txt # returns the file content
-curl -X PUT --data 'hello world' localhost:8441/some-file.txt # writes a file
+curl localhost:8080 # returns a directory listing in JSON format
+curl localhost:8080/some-file.txt # returns the file content
+curl -X PUT --data 'hello world' localhost:8080/some-file.txt # writes a file
 curl -X POST localhost/some-dir # creates a new directory
 ```
-
-Run `expose-fs --help` for additional options
 
 ## License
 
